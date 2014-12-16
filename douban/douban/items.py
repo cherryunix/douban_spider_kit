@@ -5,10 +5,13 @@
 # See documentation in:
 # http://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
-
-
-class DoubanItem(scrapy.Item):
+from scrapy.item import Item, Field
+ 
+class DoubanItem(Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    # name = Field()
+    groupName = Field()
+    groupURL = Field()
+    totalNumber = Field()
+    RelativeGroups = Field()
+    ActiveUesrs = Field()
