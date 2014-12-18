@@ -10,6 +10,7 @@ import scrapy
 
 class DoubanmovieItem(scrapy.Item):
     MovieTitle = scrapy.Field()
+    MovieYear = scrapy.Field()
     MovieDirector = scrapy.Field()
     MovieGenre = scrapy.Field()
     MovieLang = scrapy.Field()
