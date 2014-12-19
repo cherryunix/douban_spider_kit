@@ -2,7 +2,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item
-from douban.items import DoubanmovieItem
+from DoubanMovie.items import DoubanmovieItem
 from scrapy.http import HtmlResponse
 import re
  
@@ -14,37 +14,7 @@ import re
 class MovieMainSpider(CrawlSpider):
     name = "MovieMain"
     allowed_domains = ["movie.douban.com"]
-    start_urls = [
-        "http://movie.douban.com/tag/"
-    ]
- 
-    rules = [
-        
-    ]
- 
-    def __get_id_from_movie_url(self, url):
-        m =  re.search("^http://movie.douban.com/subject/([^/]+)/$", url)
-        if(m):
-            return m.group(1) 
-        else:
-            return 0
- 
- 
- 
-    def add_cookie(self, request):
-        request.replace(cookies=[
- 
-        ]);
-        return request;
- 
-    def parse_group_topic_list(self, response):
-        self.log("Fetch group topic list page: %s" % response.url)
-        pass
- 
- 
-allowed_domains = ["movie.douban.com"]
-    start_urls = [
-        "http://movie.douban.com/tag/%E7%88%B1%E6%83%85",
+    start_urls = ["http://movie.douban.com/tag/%E7%88%B1%E6%83%85",
         "http://movie.douban.com/tag/%E5%96%9C%E5%89%A7",
         "http://movie.douban.com/tag/%E5%8A%A8%E7%94%BB",
         "http://movie.douban.com/tag/%E7%A7%91%E5%B9%BB",
@@ -80,4 +50,27 @@ allowed_domains = ["movie.douban.com"]
         "http://movie.douban.com/tag/%E7%AB%A5%E8%AF%9D",
         "http://movie.douban.com/tag/%E7%83%82%E7%89%87",
         "http://movie.douban.com/tag/cult"
-        ]
+    ]
+ 
+    rules = [
+        
+    ]
+ 
+    def __get_id_from_movie_url(self, url):
+        m =  re.search("^http://movie.douban.com/subject/([^/]+)/$", url)
+        if(m):
+            return m.group(1) 
+        else:
+            return 0
+ 
+ 
+ 
+    def add_cookie(self, request):
+        request.replace(cookies=[
+ 
+        ]);
+        return request;
+ 
+    def parse_group_topic_list(self, response):
+        self.log("Fetch group topic list page: %s" % response.url)
+        pass
