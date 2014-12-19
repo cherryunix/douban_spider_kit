@@ -10,14 +10,14 @@ from DoubanMovie.items import DoubanmovieItem
 from scrapy.http import HtmlResponse
 import re
 
-class testmoviespider(CrawlSpider)
+class testmoviespider(CrawlSpider):
     name ="test"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
         http://movie.douban.com/subject/25779218/
         ]
 
-def movie_parse(self.response)
+def movie_parse(self.response):
         item = DoubanmovieItem()
         item('MovieTitle') = sel.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item('MovieYear') = sel.xpath("//h1/span[@class='year']/text()").extract()

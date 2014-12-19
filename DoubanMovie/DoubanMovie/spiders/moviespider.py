@@ -6,6 +6,11 @@ from douban.items import DoubanmovieItem
 from scrapy.http import HtmlResponse
 import re
  
+#流程：使用xpath找到分类，根据分类爬取电影信息
+#sel.xpath("//div[@class='article']/table[1]//a").extract()#找分类
+#sel.xpath("//tr[@class='item']//a/@href").extract()#电影链接
+#sel.xpath("//span[@class='next']/link/@href").extract()#下一页
+
 class MovieMainSpider(CrawlSpider):
     name = "MovieMain"
     allowed_domains = ["movie.douban.com"]
