@@ -6,7 +6,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item
-from douban.items import DoubanmovieItem
+from DoubanMovie.items import DoubanmovieItem
 from scrapy.http import HtmlResponse
 import re
 
@@ -18,16 +18,16 @@ class testmoviespider(CrawlSpider)
         ]
 
 def movie_parse(self.response)
-    for sel in response.xpath("/body/div[@id='content']")
         item = DoubanmovieItem()
-        item('MovieTitle') = sel.xpath("/h1/span[@property='v:itemreviewed']/text()").extract()
-        item('MovieYear') = sel.xpath("/h1/span[@class='year']/text()").extract()
+        item('MovieTitle') = sel.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
+        item('MovieYear') = sel.xpath("//h1/span[@class='year']/text()").extract()
         item('MovieDirector') = sel.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         item('MovieGenre') = sel.xpath("//div[@id='info']//span[@property='v:genre']/a").extract()
         item('MovieLang') = sel.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
         item('MovieLocal') = sel.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
-        item('MovieShort')
-        item('MovieLong') = sel.xpath("//div[@id='info']//span[@property='v:runtime']/@content").extract()
-        item('MovieVoteScore')
-        item('MovieVoteNumber')
-        sel.xpath("//div[@id='info']//span[6]/text()").extract()
+        item('MovieShort') = sel.xpath("//div[@class='mod-hd']//h2/span[@class='pl']/a").extract()
+        item('MovieLeng') = sel.xpath("//div[@id='info']//span[@property='v:runtime']/@content").extract()
+        item('MovieLong') = sel.xpath("//a[@class='comment_btn'/h2/span[@class='pl']/a").extract()
+        item('MovieVoteScore') = sel.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
+        item('MovieVoteNumber') = sel.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
+        print item('MovieTitle')

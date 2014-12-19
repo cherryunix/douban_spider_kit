@@ -17,5 +17,6 @@ class DoubanmovieItem(scrapy.Item):
     MovieLocal = scrapy.Field()
     MovieShort = scrapy.Field()
     MovieLong = scrapy.Field()
+    MovieLeng = scrapy.Field()
     MovieVoteScore = scrapy.Field()
     MovieVoteNumber = scrapy.Field()
