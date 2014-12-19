@@ -1,3 +1,4 @@
+# coding=gbk
 #流程：使用xpath找到分类，根据分类爬取电影信息
 #sel.xpath("//div[@class='article']/table[1]//a").extract()#找分类
 #sel.xpath("//tr[@class='item']//a/@href").extract()#电影链接
