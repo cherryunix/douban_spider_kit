@@ -31,4 +31,4 @@ def movie_parse(self,response):
         item['MovieLong'] = response.xpath("//a[@class='comment_btn'/h2/span[@class='pl']/a").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        print item['MovieTitle']
+        yield items
