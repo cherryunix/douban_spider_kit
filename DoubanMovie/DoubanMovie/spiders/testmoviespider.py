@@ -21,6 +21,7 @@ class testmoviespider(CrawlSpider):
 def movie_parse(self,response):
         item = DoubanmovieItem()
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
+        MovieTitle = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         item['MovieGenre'] = response.xpath("//div[@id='info']//span[@property='v:genre']/a").extract()
