@@ -15,7 +15,7 @@ class testmoviespider(CrawlSpider):
     name ="test"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
-        http://movie.douban.com/subject/25779218/
+        "http://movie.douban.com/subject/25779218/"
         ]
 
 def movie_parse(self.response):
