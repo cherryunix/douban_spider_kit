@@ -26,10 +26,9 @@ class testmoviespider(CrawlSpider):
 
     def parse(self,response):
         sel = Selector(response)
-        items = []
         moviepool = sel.xpath("//div[@class='']//div[@class='pl2']//a/@href").extract()
-        items.extend([self.make_requests_from_url(url).replace(callback=self.get_movie_page_info)
-                     for url in moviepool])
+        for url in moviepool:
+            yield self.make_requests_from_url(url).replace(callback=self.get_movie_page_info)
         nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
         if len(nexturl)>0:
             yield self.make_requests_from_url(nexturl[0])
