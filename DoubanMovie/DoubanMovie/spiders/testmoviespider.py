@@ -15,7 +15,7 @@ class testmoviespider(CrawlSpider):
     name ="test"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
-        "http://movie.douban.com/tag/%E7%88%B1%E6%83%85?start=0&type=T",
+        "http://movie.douban.com/tag/%E7%88%B1%E6%83%85?start=6660&type=T",
         "http://movie.douban.com/subject/25779218/"
         ]
     
