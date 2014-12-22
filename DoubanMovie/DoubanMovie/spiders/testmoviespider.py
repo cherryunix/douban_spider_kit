@@ -30,7 +30,7 @@ class testmoviespider(CrawlSpider):
         moviepool = sel.xpath("div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']").xpath("a/@href").extract()
         items.extend([self.make_requests_from_url(url).replace(callback=self.parse_post)
                      for url in moviepool])
-        nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
+        nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()[0]
         yield self.make_requests_from_url(nexturl)
         
 
