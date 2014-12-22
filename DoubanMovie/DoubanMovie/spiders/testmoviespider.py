@@ -28,7 +28,7 @@ class testmoviespider(CrawlSpider):
         sel = Selector(response)
         items = []
         moviepool = sel.xpath("//div[@class='']//div[@class='pl2']//a/@href").extract()
-        items.extend([self.make_requests_from_url(url).replace(callback=self.parse_post)
+        items.extend([self.make_requests_from_url(url).replace(callback=self.get_movie_page_info)
                      for url in moviepool])
         nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
         if len(nexturl)>0:
@@ -57,4 +57,4 @@ class testmoviespider(CrawlSpider):
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        yield item
+        #yield item
