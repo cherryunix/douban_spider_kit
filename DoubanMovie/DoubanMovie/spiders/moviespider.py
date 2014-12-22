@@ -81,7 +81,7 @@ class MovieMainSpider(CrawlSpider):
         genres = sel.xpath("//div[@id='info']//span[@property='v:genre']")
         item['MovieGenre']=[]
         for genre in genres:
-            mgenre = sel.xpath("/text()").extract()
+            mgenre = genre.xpath("/text()").extract()
             item['MovieGenre'].append(mgenre)
         item['MovieLang'] = response.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
         item['MovieLocal'] = response.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
