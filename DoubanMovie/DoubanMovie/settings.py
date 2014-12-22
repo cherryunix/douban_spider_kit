@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = 'DoubanMovie.spiders'
 #USER_AGENT = 'DoubanMovie (+http://www.yourdomain.com)'
 
 SPIDER_MIDDLEWARES = {
-'myproject.middlewares.CustomSpiderMiddleware': 543,   
+'DoubanMovie.middlewares.CustomSpiderMiddleware': 543,   
 }
 
 DOWNLOAD_DELAY = 2
