@@ -20,3 +20,11 @@ class DoubanmovieItem(scrapy.Item):
     MovieLeng = scrapy.Field()
     MovieVoteScore = scrapy.Field()
     MovieVoteNumber = scrapy.Field()
+
+class DoubanTagInfo(scrapy.Item)
+    TagName = scrapy.Field()
+    MovieTitle = scrapy.Field()
+    MovieUrl = scrapy.Field()
+
+class NextPage(scrapy.Item)
+    Url
