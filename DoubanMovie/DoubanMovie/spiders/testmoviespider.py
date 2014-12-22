@@ -19,8 +19,8 @@ class testmoviespider(CrawlSpider):
         ]
     
     rules = (
-            Rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
-            Rule(LinkExtractor(allow=('subject/')),callback='get_movie_page_parse'),
+            Rule(LinkExtractor(allow=('tag/',)),callback='get_tag_page_parse'),
+            Rule(LinkExtractor(allow=('subject/[0-9]{1,9}',),deny=('[0-9]{1-9}/.')),callback='get_movie_page_parse'),
         )
 
     def get_movie_page_parse(self,response):
