@@ -63,12 +63,13 @@ class MovieMainSpider(CrawlSpider):
     def get_tag_page_parse(self,response):
         item = DoubanTagInfo()
         sel = Selector(response)
-        moviepool = sel.xpath("//div[@class='article']//tr[@class='item]//div[@class='pl2']'")
+        urlpool = []
+        moviepool = sel.xpath("//div[@class='article']//tr[@class='item']//div[@class='pl2']")
         for movie in moviepool:
             movieurl = movie.xpath("//a/@href").extract()
-            urlpool.append(moviepool)
+            urlpool.append(movieurl)
         nexturl = sel.xpath("//span[@class='next']/link/@href").extract()
-        urlpool.append(nextpool)
+        urlpool.append(nexturl)
         return urlpool
 
 
