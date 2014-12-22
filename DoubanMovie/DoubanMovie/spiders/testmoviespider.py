@@ -7,7 +7,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item
-from DoubanMovie.items import DoubanmovieItem
+from DoubanMovie.items import DoubanmovieItem,DoubanTagInfo
 from scrapy.http import HtmlResponse
 import re
 
