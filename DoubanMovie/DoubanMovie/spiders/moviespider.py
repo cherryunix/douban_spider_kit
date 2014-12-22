@@ -62,7 +62,7 @@ class MovieMainSpider(CrawlSpider):
 
     def get_tag_page_parse(self,response):
         item = DoubanTagInfo()
-        sel = selector(response)
+        sel = Selector(response)
         moviepool = sel.xpath("//div[@class='article']//tr[@class='item]//div[@class='pl2']'")
         for movie in moviepool:
             movieurl = movie.xpath("//a/@href").extract()
@@ -74,7 +74,7 @@ class MovieMainSpider(CrawlSpider):
 
     def get_movie_page_info(self,response):
         item = DoubanmovieItem()
-        sel = selector(response)
+        sel = Selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
