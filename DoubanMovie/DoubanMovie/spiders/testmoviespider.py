@@ -26,14 +26,15 @@ class testmoviespider(CrawlSpider):
 
     def parse(self,response):
         sel = Selector(response)
-        urlpool = []
+        urlpool = UrlLink()
+        urlpool['Urlpool'] = []
         moviepool = sel.xpath("div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
         for movie in moviepool:
             movieurl = movie.xpath("a/@href").extract()
-            urlpool.append(movieurl)
+            urlpool['Urlpool'].append(movieurl)
         nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
-        urlpool.append(nexturl)
-        for url in urlpool:
+        urlpool['Urlpool'].append(nexturl)
+        for url in urlpool['Urlpool']:
             yield self.make_requests_from_url(url)
         
 
