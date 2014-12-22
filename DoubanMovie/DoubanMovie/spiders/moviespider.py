@@ -55,7 +55,7 @@ class MovieMainSpider(CrawlSpider):
  
     rules = (
             Rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
-            Rule(linkextractor(allow=('subject/')),callback='get_movie_page_parse')
+            Rule(Linkextractor(allow=('subject/')),callback='get_movie_page_parse'),
         )
         
 
@@ -72,4 +72,4 @@ class MovieMainSpider(CrawlSpider):
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        yield item
+        return item
