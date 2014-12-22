@@ -17,8 +17,13 @@ class testmoviespider(CrawlSpider):
     start_urls = [
         "http://movie.douban.com/subject/25779218/"
         ]
+    
+    rules = (
+            rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
+            rule(linkextractor(allow=('subject/')),callback='get_movie_page_parse'),
+        )
 
-    def parse(self,response):
+    def get_movie_page_parse(self,response):
         item = DoubanmovieItem()
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()

@@ -53,25 +53,23 @@ class MovieMainSpider(CrawlSpider):
         "http://movie.douban.com/tag/cult"
     ]
  
-    rules = [
+    rules = (
+            rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
+            rule(linkextractor(allow=('subject/')),callback='get_movie_page_parse')
+        )
         
-    ]
- 
-    def __get_id_from_movie_url(self, url):
-        m =  re.search("^http://movie.douban.com/subject/([^/]+)/$", url)
-        if(m):
-            return m.group(1) 
-        else:
-            return 0
- 
- 
- 
-    def add_cookie(self, request):
-        request.replace(cookies=[
- 
-        ]);
-        return request;
- 
-    def parse_group_topic_list(self, response):
-        self.log("Fetch group topic list page: %s" % response.url)
-        pass
+
+    def get_movie_page_parse(self,response):
+        item = DoubanmovieItem()
+        item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
+        item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
+        item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
+        item['MovieGenre'] = response.xpath("//div[@id='info']//span[@property='v:genre']/text()").extract()
+        item['MovieLang'] = response.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
+        item['MovieLocal'] = response.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
+        item['MovieShort'] = response.xpath("//div[@class='mod-hd']//h2/span[@class='pl']/a").extract()
+        item['MovieLeng'] = response.xpath("//div[@id='info']//span[@property='v:runtime']/@content").extract()
+        item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
+        item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
+        item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
+        yield item
