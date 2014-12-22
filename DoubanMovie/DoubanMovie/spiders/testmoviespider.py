@@ -31,7 +31,7 @@ class testmoviespider(CrawlSpider):
         items.extend([self.make_requests_from_url(url).replace(callback=self.parse_post)
                      for url in moviepool])
         nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
-            yield self.make_requests_from_url(nexturl)
+        yield self.make_requests_from_url(nexturl)
         
 
     def get_movie_page_info(self,response):
