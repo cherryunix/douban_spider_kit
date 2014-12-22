@@ -18,7 +18,7 @@ NEWSPIDER_MODULE = 'DoubanMovie.spiders'
 
 SPIDER_MIDDLEWARES = {
 
-    'scrapy.contrib.spidermiddleware.duplicatesfilter.DuplicatesFilterMiddleware': 543,   
+    'scrapy.dupefilter.RFPDupeFilter': 543,   
 }
 
 DOWNLOAD_DELAY = 2
