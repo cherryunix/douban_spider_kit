@@ -7,7 +7,7 @@ from scrapy.contrib.spiders import CrawlSpider, Rule
 from scrapy.contrib.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.item import Item
-from DoubanMovie.items import DoubanmovieItem,DoubanTagInfo
+from DoubanMovie.items import DoubanmovieItem,DoubanTagInfo,UrlLink
 from scrapy.http import HtmlResponse
 import re
 
@@ -27,12 +27,12 @@ class testmoviespider(CrawlSpider):
     def parse(self,response):
         urlpool = UrlLink()
         sel = Selector(response)
-        urlpool = []
-        moviepool = sel.xpath("//body//div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
+        urlpool['Urlpool'] = []
+        moviepool = sel.xpath("div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
         for movie in moviepool:
             movieurl = movie.xpath("a/@href").extract()
             urlpool.append(movieurl)
-        nexturl = sel.xpath("/div[@class='paginator']/span[@class='next']/link/@href").extract()
+        nexturl = sel.xpath("//div[@class='paginator']/span[@class='next']/link/@href").extract()
         urlpool.append(nexturl)
         return urlpool
 
