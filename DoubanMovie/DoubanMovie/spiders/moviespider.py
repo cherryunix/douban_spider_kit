@@ -54,8 +54,8 @@ class MovieMainSpider(CrawlSpider):
     ]
  
     rules = (
-            rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
-            rule(linkextractor(allow=('subject/')),callback='get_movie_page_parse')
+            Rule(LinkExtractor(allow=('tag/')),callback='get_tag_page_parse'),
+            Rule(linkextractor(allow=('subject/')),callback='get_movie_page_parse')
         )
         
 
