@@ -25,14 +25,10 @@ class testmoviespider(CrawlSpider):
 
     def get_movie_page_parse(self,response):
         item = DoubanmovieItem()
-        sel = selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
-        genres = sel.xpath("//div[@id='info']//span[@property='v:genre']").extract()
-        for genre in genres:
-            MovieGenre = sel.xpath("/text()").extract()
-            item['MovieGenre'].append(MovieGenre)
+        item['MovieGenre'] = response.xpath("//div[@id='info']//span[@property='v:genre']/text()").extract()
         item['MovieLang'] = response.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
         item['MovieLocal'] = response.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
         item['MovieShort'] = response.xpath("//div[@class='mod-hd']//h2/span[@class='pl']/a").extract()
@@ -40,4 +36,4 @@ class testmoviespider(CrawlSpider):
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        return item
+        yield item
