@@ -14,9 +14,12 @@ import re
 class testmoviespider(CrawlSpider):
     name ="test"
     allowed_domains = ["movie.douban.com"]
-    start_urls = [
-        "http://movie.douban.com/tag/%E7%88%B1%E6%83%85?start=6660&type=T",
-        "http://movie.douban.com/subject/25779218/"
+    start_urls = ["http://movie.douban.com/tag/%E5%8A%A8%E4%BD%9C?start=0&type=T",
+        "http://movie.douban.com/tag/%E9%9D%92%E6%98%A5?start=0&type=T",
+        "http://movie.douban.com/tag/%E6%82%AC%E7%96%91?start=0&type=T",
+        "http://movie.douban.com/tag/%E6%83%8A%E6%82%9A?start=0&type=T",
+        "http://movie.douban.com/tag/%E7%8A%AF%E7%BD%AA?start=0&type=T",
+        "http://movie.douban.com/tag/%E7%BA%AA%E5%BD%95%E7%89%87?start=0&type=T"
         ]
     
     rules = (
@@ -56,4 +59,4 @@ class testmoviespider(CrawlSpider):
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        #yield item
+        yield item
