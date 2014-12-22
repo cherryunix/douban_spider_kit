@@ -32,7 +32,7 @@ class testmoviespider(CrawlSpider):
         for movie in moviepool:
             movieurl = movie.xpath("a/@href").extract()
             urlpool.append(movieurl)
-        nexturl = sel.xpath("/div[@class='paginator'/span[@class='next']/link/@href").extract()
+        nexturl = sel.xpath("/div[@class='paginator']/span[@class='next']/link/@href").extract()
         urlpool.append(nexturl)
         return urlpool
 
