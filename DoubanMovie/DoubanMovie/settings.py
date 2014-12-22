@@ -16,6 +16,9 @@ NEWSPIDER_MODULE = 'DoubanMovie.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'DoubanMovie (+http://www.yourdomain.com)'
 
+SPIDER_MIDDLEWARES = {
+‘myproject.middlewares.CustomSpiderMiddleware’: 543,   
+}
 
 DOWNLOAD_DELAY = 2
 RANDOMIZE_DOWNLOAD_DELAY = True
