@@ -64,11 +64,11 @@ class MovieMainSpider(CrawlSpider):
         item = DoubanTagInfo()
         sel = Selector(response)
         urlpool = []
-        moviepool = sel.xpath("//body//div[@class='article']//tr[@class='item']//div[@class='pl2']")
+        moviepool = sel.xpath("//body//div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
         for movie in moviepool:
-            movieurl = movie.xpath("//a/@href").extract()
+            movieurl = movie.xpath("a/@href").extract()
             urlpool.append(movieurl)
-        nexturl = sel.xpath("//span[@class='next']/link/@href").extract()
+        nexturl = sel.xpath("/div[@class='paginator'/span[@class='next']/link/@href").extract()
         urlpool.append(nexturl)
         return urlpool
 

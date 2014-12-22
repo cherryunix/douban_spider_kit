@@ -17,7 +17,8 @@ NEWSPIDER_MODULE = 'DoubanMovie.spiders'
 #USER_AGENT = 'DoubanMovie (+http://www.yourdomain.com)'
 
 SPIDER_MIDDLEWARES = {
-'dupe_middlewares.CustomSpiderMiddleware': 543,   
+
+    'scrapy.contrib.spidermiddleware.duplicatesfilter.DuplicatesFilterMiddleware': 543,   
 }
 
 DOWNLOAD_DELAY = 2

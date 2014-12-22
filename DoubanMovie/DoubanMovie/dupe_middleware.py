@@ -1,7 +1,5 @@
-import redis
-from scrapy import signals,log
-from scrapy.xlib.pydispatch import dispatcher
-from scrapy.http import Request
+from scrapy.core.exceptions import IgnoreRequest
+from scrapy.extension import extensions
 
 class CustomSpiderMiddleware(object):
     redis = None
