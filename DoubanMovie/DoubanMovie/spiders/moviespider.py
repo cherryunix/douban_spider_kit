@@ -85,8 +85,8 @@ class MovieMainSpider(CrawlSpider):
             count+1
             mgenre = genre.xpath("text()").extract()
             item['MovieGenre'].append(mgenre)
-        item['MovieLang'] = response.xpath("//div[@id='info']//span[6+%d]/following-sibling::text()[1]").extract() %count
-        item['MovieLocal'] = response.xpath("//div[@id='info']//span[5+%d]/following-sibling::text()[1]").extract() %count
+        item['MovieLang'] = response.xpath("//div[@id='info']//span[6+%s]/following-sibling::text()[1]").extract() %count
+        item['MovieLocal'] = response.xpath("//div[@id='info']//span[5+%s]/following-sibling::text()[1]").extract() %count
         item['MovieShort'] = response.xpath("//div[@id='comments-section']//h2/span[@class='pl']/a").extract()
         item['MovieLeng'] = response.xpath("//div[@id='info']//span[@property='v:runtime']/@content").extract()
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
