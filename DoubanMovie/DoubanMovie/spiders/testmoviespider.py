@@ -15,13 +15,27 @@ class testmoviespider(CrawlSpider):
     name ="test"
     allowed_domains = ["movie.douban.com"]
     start_urls = [
+        "http://movie.douban.com/tag/%E7%88%B1%E6%83%85?start=0&type=T",
         "http://movie.douban.com/subject/25779218/"
         ]
     
     rules = (
-            Rule(LinkExtractor(allow=('tag/',)),callback='get_tag_page_parse'),
+            Rule(LinkExtractor(allow=('tag/.+',)),callback='parse'),
             Rule(LinkExtractor(allow=('subject/[0-9]+/',),deny=('[0-9]+/.+')),callback='get_movie_page_info'),
         )
+
+    def parse(self,response):
+        item = DoubanTagInfo()
+        sel = Selector(response)
+        urlpool = []
+        moviepool = sel.xpath("//body//div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
+        for movie in moviepool:
+            movieurl = movie.xpath("a/@href").extract()
+            urlpool.append(movieurl)
+        nexturl = sel.xpath("/div[@class='paginator'/span[@class='next']/link/@href").extract()
+        urlpool.append(nexturl)
+        return urlpool
+
 
     def get_movie_page_info(self,response):
         item = DoubanmovieItem()

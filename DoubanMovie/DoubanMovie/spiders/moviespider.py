@@ -55,12 +55,12 @@ class MovieMainSpider(CrawlSpider):
     ]
  
     rules = (
-            Rule(LinkExtractor(allow=('tag/.+?start=[0-9]+',)),callback='get_tag_page'),
+            Rule(LinkExtractor(allow=('tag/.+?start=[0-9]+',)),callback='parse'),
             Rule(LinkExtractor(allow=('subject/[0-9]+/',),deny=('[0-9]+/.+')),callback='get_movie_page_info'),
         )
 
 
-    def get_tag_page_parse(self,response):
+    def parse(self,response):
         item = DoubanTagInfo()
         sel = Selector(response)
         urlpool = []
