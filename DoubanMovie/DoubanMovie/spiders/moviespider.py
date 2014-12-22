@@ -79,9 +79,8 @@ class MovieMainSpider(CrawlSpider):
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         genres = sel.xpath("//div[@id='info']//span[@property='v:genre']").extract()
-        for genre in genres:
-            moviegenre = sel.xpath("/text()").extract()
-            item['MovieGenre'].append(moviegenre)
+        moviegenre = sel.xpath("/text()").extract()
+        item['MovieGenre'].append(moviegenre)
         item['MovieLang'] = response.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
         item['MovieLocal'] = response.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
         item['MovieShort'] = response.xpath("//div[@class='mod-hd']//h2/span[@class='pl']/a").extract()
