@@ -20,8 +20,10 @@ class testmoviespider(CrawlSpider):
 
 def movie_parse(self,response):
         item = DoubanmovieItem()
+        sel = selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         MovieTitle = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
+        print MovieTitle
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         item['MovieGenre'] = response.xpath("//div[@id='info']//span[@property='v:genre']/a").extract()
@@ -32,4 +34,4 @@ def movie_parse(self,response):
         item['MovieLong'] = response.xpath("//a[@class='comment_btn'/h2/span[@class='pl']/a").extract()
         item['MovieVoteScore'] = response.xpath("//div[@class='rating_wrap clearbox']/p[1]/strong/text()").extract()
         item['MovieVoteNumber'] = response.xpath("//div[@class='rating_wrap clearbox']/p[2]//span/text()").extract()
-        return item
+        yield item
