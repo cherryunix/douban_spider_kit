@@ -64,7 +64,7 @@ class MovieMainSpider(CrawlSpider):
         item = DoubanTagInfo()
         sel = Selector(response)
         urlpool = []
-        moviepool = sel.xpath("//div[@class='article']//tr[@class='item']//div[@class='pl2']")
+        moviepool = sel.xpath("//body//div[@class='article']//tr[@class='item']//div[@class='pl2']")
         for movie in moviepool:
             movieurl = movie.xpath("//a/@href").extract()
             urlpool.append(movieurl)
