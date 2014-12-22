@@ -25,3 +25,6 @@ class DoubanTagInfo(scrapy.Item):
     TagName = scrapy.Field()
     MovieTitle = scrapy.Field()
     MovieUrl = scrapy.Field()
+
+class UrlLink(scrapy.Item):
+    Urlpool = scrapy.Field()

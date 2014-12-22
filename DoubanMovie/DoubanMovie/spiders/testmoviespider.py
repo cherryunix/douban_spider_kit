@@ -25,7 +25,7 @@ class testmoviespider(CrawlSpider):
         )
 
     def parse(self,response):
-        item = DoubanTagInfo()
+        urlpool = UrlLink()
         sel = Selector(response)
         urlpool = []
         moviepool = sel.xpath("//body//div[@class='article']/div[@class='']/tr[@class='item']//div[@class='pl2']")
@@ -35,7 +35,6 @@ class testmoviespider(CrawlSpider):
         nexturl = sel.xpath("/div[@class='paginator']/span[@class='next']/link/@href").extract()
         urlpool.append(nexturl)
         return urlpool
-
 
     def get_movie_page_info(self,response):
         item = DoubanmovieItem()
