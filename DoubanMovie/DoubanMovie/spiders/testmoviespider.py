@@ -23,7 +23,7 @@ class testmoviespider(CrawlSpider):
             Rule(LinkExtractor(allow=('subject/[0-9]+/',),deny=('[0-9]+/.+')),callback='get_movie_page_parse'),
         )
 
-    def get_movie_page_info(self,response):
+    def get_movie_page_parse(self,response):
         item = DoubanmovieItem()
         sel = Selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
@@ -31,11 +31,13 @@ class testmoviespider(CrawlSpider):
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         genres = sel.xpath("//div[@id='info']//span[@property='v:genre']")
         item['MovieGenre']=[]
+        count = 0
         for genre in genres:
+            count+1
             mgenre = genre.xpath("text()").extract()
             item['MovieGenre'].append(mgenre)
-        item['MovieLang'] = response.xpath("//div[@id='info']//span[7]/following-sibling::text()[1]").extract()
-        item['MovieLocal'] = response.xpath("//div[@id='info']//span[6]/following-sibling::text()[1]").extract()
+        item['MovieLang'] = response.xpath("//div[@id='info']//span[6+count]/following-sibling::text()[1]").extract()
+        item['MovieLocal'] = response.xpath("//div[@id='info']//span[5+count]/following-sibling::text()[1]").extract()
         item['MovieShort'] = response.xpath("//div[@id='comments-section']//h2/span[@class='pl']/a").extract()
         item['MovieLeng'] = response.xpath("//div[@id='info']//span[@property='v:runtime']/@content").extract()
         item['MovieLong'] = response.xpath("//div[@id='review_section']//span[@class='pl']/a/text()").extract()
