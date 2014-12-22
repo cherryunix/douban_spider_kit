@@ -18,9 +18,8 @@ class testmoviespider(CrawlSpider):
         "http://movie.douban.com/subject/25779218/"
         ]
 
-def movie_parse(self,response):
+    def parse(self,response):
         item = DoubanmovieItem()
-        sel = selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         MovieTitle = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         print MovieTitle
