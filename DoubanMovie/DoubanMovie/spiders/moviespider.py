@@ -74,7 +74,7 @@ class MovieMainSpider(CrawlSpider):
 
     def get_movie_page_parse(self,response):
         item = DoubanmovieItem()
-        sel = selector(response)
+        sel = Selector(response)
         item['MovieTitle'] = response.xpath("//h1/span[@property='v:itemreviewed']/text()").extract()
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
