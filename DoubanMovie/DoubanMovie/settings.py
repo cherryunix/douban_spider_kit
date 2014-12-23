@@ -16,6 +16,22 @@ NEWSPIDER_MODULE = 'DoubanMovie.spiders'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'DoubanMovie (+http://www.yourdomain.com)'
 
+# Retry many times since proxies often fail
+RETRY_TIMES = 10
+# Retry on most error codes since proxies fail for different reasons
+RETRY_HTTP_CODES = [500, 503, 504, 400, 403, 404, 408]
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.contrib.downloadermiddleware.retry.RetryMiddleware': 90,
+    # Fix path to this module
+    'DoubanMovie.randomproxy.RandomProxy': 100,
+    'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+    'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
+    'DoubanMovie.rotate_useragent.RotateUserAgentMiddleware' :400
+}
+
+PROXY_LIST = '/DoubanMovie/data/proxy_list.txt'
+
 SPIDER_MIDDLEWARES = {
 
     'scrapy.dupefilter.RFPDupeFilter': 543,   
@@ -23,5 +39,4 @@ SPIDER_MIDDLEWARES = {
 
 DOWNLOAD_DELAY = 1
 RANDOMIZE_DOWNLOAD_DELAY = True
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_3) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.54 Safari/536.5'
 COOKIES_ENABLED = False
