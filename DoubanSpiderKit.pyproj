@@ -36,9 +36,6 @@
     <Compile Include="DoubanMovie\DoubanMovie\spiders\module1.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DoubanMovie\DoubanMovie\spiders\moviespider.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DoubanMovie\DoubanMovie\spiders\testmoviespider.py">
       <SubType>Code</SubType>
     </Compile>
