@@ -21,9 +21,21 @@
     <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DoubanMovie\DoubanMovie\randomproxy.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DoubanMovie\DoubanMovie\dupe_middleware.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DoubanMovie\DoubanMovie\items.py" />
     <Compile Include="DoubanMovie\DoubanMovie\pipelines.py" />
+    <Compile Include="DoubanMovie\DoubanMovie\rotate_useragent.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DoubanMovie\DoubanMovie\settings.py" />
+    <Compile Include="DoubanMovie\DoubanMovie\spiders\module1.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DoubanMovie\DoubanMovie\spiders\moviespider.py">
       <SubType>Code</SubType>
     </Compile>
@@ -47,6 +59,7 @@
   <ItemGroup>
     <Folder Include="DoubanMovie\" />
     <Folder Include="DoubanMovie\DoubanMovie" />
+    <Folder Include="DoubanMovie\DoubanMovie\data\" />
     <Folder Include="DoubanMovie\DoubanMovie\spiders" />
     <Folder Include="DoubanUsers\" />
     <Folder Include="DoubanUsers\DoubanUsers" />
@@ -54,6 +67,9 @@
     <Folder Include="douban\" />
     <Folder Include="douban\douban" />
     <Folder Include="douban\douban\spiders" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DoubanMovie\DoubanMovie\data\proxy_list.txt" />
   </ItemGroup>
   <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
