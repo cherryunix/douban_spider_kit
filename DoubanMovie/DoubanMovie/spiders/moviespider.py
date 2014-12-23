@@ -48,7 +48,7 @@ class MovieMainSpider(CrawlSpider):
         item['MovieYear'] = response.xpath("//h1/span[@class='year']/text()").extract()
         item['MovieDirector'] = response.xpath("//div[@id='info']/span[1]/span[@class='attrs']/a").extract()
         item['MovieActor'] = []
-        actors = sel.xpath("//span[@class='actor']/span[@class='attrs']/span")
+        actors = sel.xpath("//span[@class='actor']/span[@class='attrs']")
         for actor in actors:
             mActor = actor.xpath("a/@href").extract()
             item['MovieActor'].appen(mActor)
